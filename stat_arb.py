@@ -39,6 +39,7 @@ def send_telegram_message(message):
 
 if __name__ == "__main__":
     while True:
+        fee = 0.05 / 100  # 0.05% fee
         usdt_perp = fetch_btc_usdt_perp("BTCUSDT")
         usdc_perp = fetch_btc_usdt_perp("BTCUSDC")
         usdt_spot = fetch_btc_usdt_spot("BTCUSDT")
@@ -73,8 +74,7 @@ if __name__ == "__main__":
 
         average = (prices[pair[0]] + prices[pair[1]]) / 2
         percent = max_diff / average * 100
-        #print(f"Greatest Difference: {max_diff} between {pair[0]} and {pair[1]}")
-        #print(f"Percent: {percent}%")
-        send_telegram_message(f"Alert: Percent difference is {percent}% between {pair[0]} and {pair[1]}")
+        pnl = percent - fee * 4 * 100  
+        send_telegram_message(f"Alert: Percent difference is {percent}% between {pair[0]} and {pair[1]}, PnL: {pnl}%")
 
         time.sleep(3)
