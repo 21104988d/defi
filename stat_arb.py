@@ -27,8 +27,8 @@ def fetch_btc_usdt_spot(symbol="BTCUSDT"):
 
 def send_telegram_message(message):
     # Replace 'your_bot_token' and 'your_chat_id' with actual values
-    bot_token = "your_bot_token"
-    chat_id = "your_chat_id"
+    bot_token = "7021088050:AAFfIIqCj94d0nu08j3eMwx2GXEQqOnkJZQ"
+    chat_id = "266564928"
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     payload = {"chat_id": chat_id, "text": message}
     try:
@@ -73,9 +73,8 @@ if __name__ == "__main__":
 
         average = (prices[pair[0]] + prices[pair[1]]) / 2
         percent = max_diff / average * 100
-        print(f"Greatest Difference: {max_diff} between {pair[0]} and {pair[1]}")
-        print(f"Percent: {percent}%")
-        if percent > 0.4:
-            send_telegram_message(f"Alert: Percent difference is {percent}% between {pair[0]} and {pair[1]}")
+        #print(f"Greatest Difference: {max_diff} between {pair[0]} and {pair[1]}")
+        #print(f"Percent: {percent}%")
+        send_telegram_message(f"Alert: Percent difference is {percent}% between {pair[0]} and {pair[1]}")
 
         time.sleep(3)
